@@ -26,6 +26,8 @@ namespace TodoApplication
 		
 		public static void UpdateIdValues()
 		{
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::TodoApplication.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::TodoApplication.Resource.String.Hello;
 		}
 		
 		public partial class Attribute
@@ -61,7 +63,19 @@ namespace TodoApplication
 		{
 			
 			// aapt resource value: 0x7f050000
-			public const int MyButton = 2131034112;
+			public const int addButton = 2131034112;
+			
+			// aapt resource value: 0x7f050004
+			public const int todoCreationTime = 2131034116;
+			
+			// aapt resource value: 0x7f050001
+			public const int todoItemNameFromUser = 2131034113;
+			
+			// aapt resource value: 0x7f050002
+			public const int todoList = 2131034114;
+			
+			// aapt resource value: 0x7f050003
+			public const int todoName = 2131034115;
 			
 			static Id()
 			{
@@ -77,7 +91,10 @@ namespace TodoApplication
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Main = 2130903040;
+			public const int MainView = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int RowItem = 2130903041;
 			
 			static Layout()
 			{
@@ -92,11 +109,17 @@ namespace TodoApplication
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7f040002
+			public const int Add = 2130968578;
+			
 			// aapt resource value: 0x7f040001
 			public const int ApplicationName = 2130968577;
 			
 			// aapt resource value: 0x7f040000
 			public const int Hello = 2130968576;
+			
+			// aapt resource value: 0x7f040003
+			public const int TodoItem = 2130968579;
 			
 			static String()
 			{
