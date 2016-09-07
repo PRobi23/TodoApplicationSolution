@@ -28,7 +28,6 @@ namespace TodoApplication.Model.Database
         {
             get
             {
-
                 return sqLiteRepo.Value;
             }
         }
@@ -49,7 +48,7 @@ namespace TodoApplication.Model.Database
         }
 
         public void Insert(Todo todoItem)
-        {
+        {            
             sqliteQueries.InsertData(todoItem);
         }
 

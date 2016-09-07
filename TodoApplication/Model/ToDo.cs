@@ -44,6 +44,16 @@ namespace TodoApplication.Model
         /// </value>
         public DateTime CreateTime { get; set; }
 
+
+        //private bool isSeparator;
+
+        //public bool IsSeparator
+        //{
+        //    get { return isSeparator; }
+        //    set { isSeparator = value; }
+        //}
+
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Todo"/> class.
         /// </summary>
@@ -58,7 +68,8 @@ namespace TodoApplication.Model
 
         public override string ToString()
         {
-            return Name;
+            return $"Todo: {name}";
+            //CreateTime.ToLongDateString() + CreateTime.ToShortTimeString()}
         }
 
     }

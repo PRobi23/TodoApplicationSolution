@@ -5,6 +5,7 @@ using Android.App;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using TodoApplication.ViewModel;
 
 namespace TodoApplication.Model
 {
@@ -17,7 +18,6 @@ namespace TodoApplication.Model
         {
             this.activity = activity;
             this.todoesList = todoesList;
-
             todoesList.CollectionChanged += TodoesList_CollectionChanged;
         }
 
@@ -31,8 +31,9 @@ namespace TodoApplication.Model
             foreach (Todo newItem in e.NewItems)
             {
                 editedOrRemovedItems.Add(newItem);
-                SqLiteRepository.SqLiteRepo.Insert(newItem);
             }
+
+            SqLiteRepository.SqLiteRepo.Insert(editedOrRemovedItems[0]);
             NotifyCollectionChangedAction action = e.Action;
 
             NotifyDataSetChanged();
@@ -75,6 +76,21 @@ namespace TodoApplication.Model
 
             return view;
         }
+
+
+        //public override int GetItemViewType(int position)
+        //{
+        // //   bool isSection = todoesList[position].IsSeparator;
+
+        //    if (isSection)
+        //    {
+        //        return ITEM_VIEW_TYPE_SEPARATOR;
+        //    }
+        //    else
+        //    {
+        //        return ITEM_VIEW_TYPE_REGULAR;
+        //    }
+        //}
 
     }
 }

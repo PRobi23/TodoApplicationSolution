@@ -27,12 +27,12 @@ namespace TodoApplication
         {
             base.OnCreate(bundle);
 
-            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.MainView);
+           // SqLiteRepository.SqLiteRepo.CreateTable();
 
             await ViewModel.InitAsync();
-
-            todoAdapter = new TodoAdapter(this, ViewModel.TodoCollection);            
+            
+            todoAdapter = new TodoAdapter(this, ViewModel.TodoCollection);
 
             textBinding = this.SetBinding(() => todoItemNameFromUser.Text, BindingMode.TwoWay);
 
@@ -40,26 +40,21 @@ namespace TodoApplication
 
             todoListView.Adapter = todoAdapter;
 
-            // todoAdapter.SetBinding(() => MainViewModel.TodoCollection);
-            //ObservableAdapter<Todo> todoAdapters = new ObservableAdapter<Todo>();
-            //todoAdapters.DataSource = SqLiteRepository.SqLiteRepo.FetchAll();
-            //todoAdapters.GetTemplateDelegate = new System.Func<int, Todo, Android.Views.View, Android.Views.View>
-
-            //todoListView.Adapter = todoAdapters;
-            //IQueryable<Todo> todoItems = SqLiteRepository.SqLiteRepo.FetchAll();           
+            //todoListView.AddH    eader  
         }
 
         protected override void OnResume()
         {
             base.OnResume();
-
-            todoAdapter.NotifyDataSetChanged();
         }
-
-        protected override void OnDestroy()
+        protected override void OnPause()
         {
-            base.OnDestroy();
+            base.OnPause();
 
+            if (IsFinishing)
+            {
+                SqLiteRepository.SqLiteRepo.ClearTable();
+            }
         }
     }
 }

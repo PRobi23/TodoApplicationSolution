@@ -18,14 +18,20 @@ namespace TodoApplication.ViewModel
     {
         public RelayCommand<string> AddTodoItemCommand { get; private set; }
 
-        public ObservableCollection<Todo> TodoCollection { get; private set; }
+        public ObservableCollection<Todo> TodoCollection
+        {
+            get;
 
+            private set;
+            
+        }
         private Todo todo;
+
         public MainViewModel()
         {
             AddTodoItemCommand = new RelayCommand<string>(AddTodo);
-            todo = new Todo();
-        }     
+           
+        }
 
 
         public async Task InitAsync()
@@ -33,19 +39,19 @@ namespace TodoApplication.ViewModel
             if (TodoCollection != null)
             {
                 // Prevent memory leak in Android
-                var peopleCopy = TodoCollection.ToList();
-                TodoCollection = new ObservableCollection<Todo>(peopleCopy);
+                var todoCopy = TodoCollection.ToList();
+                TodoCollection = new ObservableCollection<Todo>(todoCopy);
                 return;
             }
 
             TodoCollection = new ObservableCollection<Todo>();
 
-            var todo = InitTodoList();
+            var todoes = InitTodoList();
 
             TodoCollection.Clear();
-            foreach (var person in todo)
+            foreach (var todo in todoes)
             {
-                TodoCollection.Add(person);
+                TodoCollection.Add(todo);
             }
 
         }
@@ -58,12 +64,19 @@ namespace TodoApplication.ViewModel
 
         private void AddTodo(string todoName)
         {
+            //SqLiteRepository.SqLiteRepo.ClearTable();
+            todo = new Todo();
             todo.Name = todoName;
-            var createTime = TimeZone.CurrentTimeZone.ToUniversalTime(DateTime.UtcNow);
+            var createTime = DateTime.UtcNow;
             todo.CreateTime = createTime;
 
-           // TodoCollection.Add(todo);
-            RaisePropertyChanged("Name");
+            if (todo.TodoId == 0 && TodoCollection.Count > 0)
+            {
+                int id = TodoCollection.Max(x => x.TodoId);
+                todo.TodoId = id + 1;
+            }
+            //TodoCollection = SqLiteRepository.SqLiteRepo.FetchAll();
+            TodoCollection.Add(todo);           
         }
     }
 }
