@@ -85,24 +85,24 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Downloads\System.Data.Linq.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Model\Database\DbContext.cs" />
     <Compile Include="Model\Database\IRepository.cs" />
-    <Compile Include="Model\Database\SqLiteDatabase.cs" />
     <Compile Include="Model\Database\SqLiteQueries.cs" />
-    <Compile Include="Model\Database\SqLiteRepository.cs" />
-    <Compile Include="Model\Database\Utilities.cs" />
+    <Compile Include="Model\Database\TodoItemRepository.cs" />
     <Compile Include="Model\ToDo.cs" />
     <Compile Include="Model\TodoAdapter.cs" />
-    <Compile Include="Model\ViewHolder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\TodoItemViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>

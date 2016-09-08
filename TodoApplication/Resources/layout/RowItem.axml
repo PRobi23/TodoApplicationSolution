@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:padding="5dp">
-    <TextView
-        android:text="Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/todoName"
-        android:layout_margin="10dp" />
-    <TextView
-        android:text="CreationTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/todoCreationTime"
-        android:layout_margin="10dp" />
-</LinearLayout>
+    android:layout_height="fill_parent" >
+  <TextView
+      android:text="Name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/todoName"
+      android:layout_margin="10dp" />
+  <TextView
+      android:text="CreationTime"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/todoCreationTime"
+       android:layout_toRightOf="@+id/todoName"
+      android:layout_margin="10dp" />
+
+  <TextView
+         android:text="CreationDate"
+         android:layout_below="@+id/todoName"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:id="@+id/todoCreationDate"
+         android:layout_margin="10dp"
+         android:background="#0095FF"/>
+</RelativeLayout>

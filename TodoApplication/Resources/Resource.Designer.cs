@@ -65,6 +65,9 @@ namespace TodoApplication
 			// aapt resource value: 0x7f050000
 			public const int addButton = 2131034112;
 			
+			// aapt resource value: 0x7f050005
+			public const int todoCreationDate = 2131034117;
+			
 			// aapt resource value: 0x7f050004
 			public const int todoCreationTime = 2131034116;
 			

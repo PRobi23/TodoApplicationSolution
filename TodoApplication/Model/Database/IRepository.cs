@@ -3,6 +3,9 @@ using System.Collections.ObjectModel;
 
 namespace TodoApplication.Model.Database
 {
+    /// <summary>
+    /// The interface for the repository. With this it's easy to modify
+    /// </summary>
     public interface IRepository
     {    
         void Insert(Todo todo);

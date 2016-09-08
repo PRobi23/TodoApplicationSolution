@@ -5,38 +5,67 @@ using System.Threading.Tasks;
 
 namespace TodoApplication.Model.Database
 {
+    /// <summary>
+    /// Class for the sqlite queries. 
+    /// </summary>
     public class SqLiteQueries
     {
 
+        public SqLiteQueries()
+        {
+        }
+        /// <summary>
+        /// Inserts the data.
+        /// </summary>
+        /// <param name="todoItem">The todo item.</param>
         public void InsertData(Todo todoItem)
         {
-            SqLiteDatabase.Database.Insert(todoItem);
+            TodoItemRepository.Instance.Connection.Insert(todoItem);
         }
 
+        /// <summary>
+        /// Gets all todo item.
+        /// </summary>
+        /// <returns></returns>
         public List<Todo> GetAllTodoItem()
         {
-            return SqLiteDatabase.Database.Table<Todo>().ToList();
+            return TodoItemRepository.Instance.Connection.Table<Todo>().ToList();
         }
 
+        /// <summary>
+        /// Creates the table.
+        /// </summary>
         public void CreateTable()
         {
-            SqLiteDatabase.Database.CreateTable<Todo>();
+            TodoItemRepository.Instance.Connection.CreateTable<Todo>();
         }
 
 
+        /// <summary>
+        /// Gets the item count.
+        /// </summary>
+        /// <returns></returns>
         public int GetItemCount()
         {
-            return SqLiteDatabase.Database.Table<Todo>().Count();
+            return TodoItemRepository.Instance.Connection.Table<Todo>().Count();
         }
 
+        /// <summary>
+        /// Returns the by identifier.
+        /// </summary>
+        /// <param name="todoId">The todo identifier.</param>
+        /// <returns></returns>
         public Todo ReturnById(int todoId)
         {
-            return SqLiteDatabase.Database.Get<Todo>(todoId);
+            return TodoItemRepository.Instance.Connection.Get<Todo>(todoId);
         }
 
+        /// <summary>
+        /// Clears the table.
+        /// </summary>
         public void ClearTable()
         {
-            SqLiteDatabase.Database.DeleteAll<Todo>();
+            TodoItemRepository.Instance.Connection.DeleteAll<Todo>();
         }
     }
 }

@@ -14,26 +14,57 @@ using TodoApplication.Model.Database;
 
 namespace TodoApplication.ViewModel
 {
+    /// <summary>
+    /// The main view model class
+    /// </summary>
+    /// <seealso cref="GalaSoft.MvvmLight.ViewModelBase" />
+    /// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
     public class MainViewModel : ViewModelBase, INotifyPropertyChanged
     {
+        /// <summary>
+        /// Gets the add todo item command.
+        /// </summary>
+        /// <value>
+        /// The add todo item command.
+        /// </value>
         public RelayCommand<string> AddTodoItemCommand { get; private set; }
 
+        /// <summary>
+        /// Gets the todo collection.
+        /// </summary>
+        /// <value>
+        /// The todo collection.
+        /// </value>
         public ObservableCollection<Todo> TodoCollection
         {
             get;
 
-            private set;
-            
+            private set;            
         }
+        /// <summary>
+        /// The todo
+        /// </summary>
         private Todo todo;
 
+        /// <summary>
+        /// The todo item repository
+        /// </summary>
+        private IRepository todoItemRepository;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainViewModel"/> class.
+        /// </summary>
         public MainViewModel()
         {
             AddTodoItemCommand = new RelayCommand<string>(AddTodo);
-           
+            todoItemRepository = TodoItemRepository.Instance;
         }
 
 
+        /// <summary>
+        /// Initializes the asynchronous.
+        /// </summary>
+        /// <returns></returns>
         public async Task InitAsync()
         {
             if (TodoCollection != null)
@@ -56,15 +87,22 @@ namespace TodoApplication.ViewModel
 
         }
 
+        /// <summary>
+        /// Initializes the todo list. If here the repo change, than we just have to initalize another one.
+        /// </summary>
+        /// <returns></returns>
         private IEnumerable<Todo> InitTodoList()
         {
-            var todo = SqLiteRepository.SqLiteRepo.FetchAll();
+            var todo = todoItemRepository.FetchAll();
             return todo;
         }
 
+        /// <summary>
+        /// Adds the todo.
+        /// </summary>
+        /// <param name="todoName">Name of the todo.</param>
         private void AddTodo(string todoName)
         {
-            //SqLiteRepository.SqLiteRepo.ClearTable();
             todo = new Todo();
             todo.Name = todoName;
             var createTime = DateTime.UtcNow;
@@ -75,8 +113,9 @@ namespace TodoApplication.ViewModel
                 int id = TodoCollection.Max(x => x.TodoId);
                 todo.TodoId = id + 1;
             }
-            //TodoCollection = SqLiteRepository.SqLiteRepo.FetchAll();
-            TodoCollection.Add(todo);           
+            TodoCollection.Add(todo);
+
+            RaisePropertyChanged("SetTextViewToDefault");
         }
     }
 }

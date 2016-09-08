@@ -2,20 +2,26 @@
 using SQLite.Net.Attributes;
 using System;
 using TodoApplication.Model.Database;
-using System.ComponentModel;
 using GalaSoft.MvvmLight;
 
 namespace TodoApplication.Model
 {
+    /// <summary>
+    /// The model for the todo object.
+    /// </summary>
+    /// <seealso cref="GalaSoft.MvvmLight.ObservableObject" />
     public class Todo : ObservableObject
     {
-        private IRepository repository;
-
+        /// <summary>
+        /// Gets or sets the todo identifier.
+        /// </summary>
+        /// <value>
+        /// The todo identifier.
+        /// </value>
         [PrimaryKey, AutoIncrement]
         public int TodoId { get; set; }
 
 
-        private string name;
 
         /// <summary>
         /// Gets or sets the name.
@@ -25,51 +31,38 @@ namespace TodoApplication.Model
         /// </value>
         public string Name
         {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-                RaisePropertyChanged("Name");
-            }
+            get; set;
         }
 
         /// <summary>
-        /// Gets or sets the create time.
+        /// Gets or sets the create time. It cannot be setted by the user, the system nows when did the user
+        /// add the Todo Item.
         /// </summary>
         /// <value>
         /// The create time.
         /// </value>
         public DateTime CreateTime { get; set; }
 
-
-        //private bool isSeparator;
-
-        //public bool IsSeparator
-        //{
-        //    get { return isSeparator; }
-        //    set { isSeparator = value; }
-        //}
-
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Todo"/> class.
         /// </summary>
-        public Todo(IRepository repository)
-        {
-            this.repository = repository;
-        }
         public Todo()
         {
 
         }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        /// <remarks>
+        /// To be added.
+        /// </remarks>
         public override string ToString()
         {
-            return $"Todo: {name}";
-            //CreateTime.ToLongDateString() + CreateTime.ToShortTimeString()}
+            return $"Todo: {Name}, {CreateTime}";
         }
 
     }
